@@ -43,10 +43,10 @@ pipeline {
             post {
                 success {
                     echo ' > Everything works well ...'
-                    sh 'docker-compose down'
                 }
                 failure {
                     echo '> Error in Building ...'
+                    sh 'docker-compose down'
                 }
             }
         }
