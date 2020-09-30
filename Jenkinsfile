@@ -16,7 +16,7 @@ pipeline {
                 sh 'wget "https://raw.githubusercontent.com/lintechso/laravel-hello-world/master/owasp-dependency-check.sh" '
                 sh 'chmod +x owasp-dependency-check.sh'
                 sh 'bash owasp-dependency-check.sh'
-                sh 'cat /home/parham/OWASP-Dependency-Check/reports/dependency-check-report.xml'
+                sh 'cat /root/OWASP-Dependency-Check/reports/dependency-check-report.xml'
             }
         }
         stage ('Test with phpstan'){
