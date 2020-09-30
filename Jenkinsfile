@@ -22,6 +22,7 @@ pipeline {
         stage ('Test with phpstan'){
             agent { label 'webapp' }
             steps {
+                  sh 'docker pull jakzal/phpqa'
                   sh 'docker run --rm -v $(pwd):/usr/src/app -w /usr/src/app jakzal/phpqa phpstan analyse --level 3 app || exit 0'
             }
         }
