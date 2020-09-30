@@ -19,6 +19,13 @@ pipeline {
                 sh 'cat /home/parham/OWASP-Dependency-Check/reports/dependency-check-report.xml'
             }
         }
+        stage ('Test with phpstan'){
+            agent { label 'parham' }
+            steps {
+                  sh 'docker run --rm -v $(pwd):/usr/src/app -w /usr/src/app jakzal/phpqa composer install --ignore-platform-reqs --no-scripts --no-progress --no-suggest'
+                  sh 'docker run --rm -v $(pwd):/usr/src/app -w /usr/src/app jakzal/phpqa phpstan analyse --level 3 app || exit 0'
+            }
+        }
         stage ('BUILD With Docker Compose'){
             agent { label 'master'}
             steps {
